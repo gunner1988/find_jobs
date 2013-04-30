@@ -1,0 +1,39 @@
+µÝ¹éÐ´·¨:
+BinTreeNode
+{
+   BinTreeNode *left;
+   BinTreeNode *right;
+   Type data;
+}
+void PreOrderVisit(BinTreeNode* root)
+{
+   if(!root)
+{
+   VisitData(root->data);
+   PreOrderVisit(root->left);
+   PreOrderVisit(root->right);
+}
+}
+Ñ­»·Ð´·¨£º
+bool PreOrderVisit(BinTreeNode* root)
+{
+    stack<BinTreeNode*> S;
+   // finished=false;
+    S.push(root);
+    BinTreeNode* p=root;
+    while(!p||!s.empty())
+    {
+        while(!p)
+        {
+            if(!visit(p)) return false;
+            p=p->left;  
+         }
+         if(!s.empty())
+         {
+              p=s.top();
+              s.pop();
+              p=p->right;
+          }
+     }
+     return true;
+}
