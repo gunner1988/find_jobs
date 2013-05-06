@@ -1,0 +1,75 @@
+µÝ¹éÐ´·¨£º
+bool InOrderTraverse(BinaryTreeNode * root)
+{
+     if(!root)
+     {
+         if(InOrderTraverse(root->left))
+           {
+                   visit(root);
+                   if(InorderTraverse(root->right))
+                        return true;
+                    else return flase;
+            }
+            else
+     
+            return false;
+      }
+      return true;
+}
+Ñ­»·Ð´·¨£º
+bool InOrderTraverse(BinartyTreeNode* root)
+{
+      if(£¡root) return true;
+      stack<BinaryTreeNode*> s;
+      s.push(root);
+      bool leftVisited=false;
+      while(!s.empty())
+      {   if(!leftVisited)
+         {
+            BinaryTreeNode* t=s.top->left;
+            while(t)
+           { 
+              s.push(t);
+              t=t->left;
+   
+            }
+          }
+          t=s.pop();
+          if(!visit(t))
+            return false;
+          t=t->right;
+          if(t)
+          {
+            s.push(t£©;
+            leftVisited=false;
+           } 
+           else
+             leftVisited=true;
+        }
+        return true;
+      
+}
+bool InorderTraverse(BinaryTreeNode* root)
+{
+      stack s;
+      s.push(root);
+      while(!s.empty())
+      {
+         BinaryTreeNode* t=s.top();
+         while(t)
+         {
+              t=t->left;
+              s.push(t);
+
+          }
+          s.pop();
+          if(!s.empty())
+          {
+             t=s.pop();
+             if(!visit(t))
+               return false;
+             s.push(t->right);
+           }
+       } 
+       return true;
+}

@@ -17,23 +17,27 @@ void PreOrderVisit(BinTreeNode* root)
 Ñ­»·Ð´·¨£º
 bool PreOrderVisit(BinTreeNode* root)
 {
-    stack<BinTreeNode*> S;
-   // finished=false;
-    S.push(root);
-    BinTreeNode* p=root;
-    while(!p||!s.empty())
+    stack s;
+    s.push(root);
+    BinaryTreeNode* t=root;
+    while(!s.empty())
     {
-        while(!p)
-        {
-            if(!visit(p)) return false;
-            p=p->left;  
-         }
-         if(!s.empty())
+         t=s.top();
+         while(t)
          {
-              p=s.top();
-              s.pop();
-              p=p->right;
+             if(!visit(t)) return false;
+             t=t->left;
+             s.push(t);
+           }
+          s.pop();
+        
+          if(!s.empty())
+         {
+             
+             t=s.pop();
+             push(t->right);
           }
+
      }
      return true;
 }
