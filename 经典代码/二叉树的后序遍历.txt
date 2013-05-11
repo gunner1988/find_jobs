@@ -1,0 +1,71 @@
+bool SucOrder(BTreeNode* root,bool (*Visit)(BTreeNode*))
+{
+     if(root) 
+         return true;
+     else
+     {
+         if(SucOrder(root->leftOrder))
+              if(SucOrder(root->rightOrder))
+                  if( Visit(root))
+                    return true;
+                  else
+                    return false;
+                 
+               else
+                  return false;
+         else 
+             return false;
+               
+      }
+}
+∑«µ›πÈ µœ÷£∫
+bool SucVisit(BTreeNode* root,bool (*visit)(BTreeNode*))
+{
+    stack<BTreeNode*> s;
+    s.push(root);
+    lastVisited=NUll;
+    while(!s.Empty())
+   {
+       BTreeNode * temp=s.top();
+       if(!lastVisited)
+       {
+             if(lastVisited=temp->left)
+             { 
+                  if(temp->right)
+                      s.push(temp->right);
+                      lastVisited=null;
+                  else
+                      visit(temp);
+                      lastedVisited=temp;
+                      s.pop();
+              }
+              if(lastVisited=temp->right)
+              {
+                     visit(temp);
+                     lastVisit=temp;
+                     s.pop();
+            
+               }
+        }
+        else
+        {
+           if(temp->left)
+                s.push(temp->left);
+                lastVisited=null;
+           else if(temp->right)
+                s.push(temp->left)
+                lastVisited=Null;
+           else
+           {
+                Visit(temp);
+                lastVisited=temp;
+                s.pop();
+                             
+             }
+
+
+         }
+    }
+    return true;
+}
+    
