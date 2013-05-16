@@ -1,8 +1,8 @@
-void merge(int *src,int start,int mid,int end)
+void merge(int *src,int start,int mid,int end,int* temp)
 //src数组前一半mid-start+1个元素和后end-mid个元素都分别是递增的，
   然后把src排序成递增序列。
 {
-    int temp[end-start+1];
+   // int temp[end-start+1];
    // int mid=start+(end-start)/2;
     int index1=0;int index2=mid+1;
     int count=0;
@@ -39,19 +39,28 @@ void merge(int *src,int start,int mid,int end)
 
             }
      }
-     for(int i=0;i<end;i++)
-        src[i]=temp[i];
+     for(int i=0;i<k;i++)
+        src[start+i]=temp[i];
            
 }
-void mergeSort(int* src,int start,int end)
+void mergeSort(int* src,int start,int end,int* temp)
 {
         if(end==start)
             return;
         else
         {
              int mid=start+(end-start)/2;
-             mergeSort(src,start,mid);
-             mergeSort(src,mid+1,end);
-             merge(src,start,end);
+             mergeSort(src,start,mid,temp);
+             mergeSort(src,mid+1,end,temp);
+             merge(src,start,end,temp);
          }
+}
+void MergeSorter(int* src,int start ,int end)
+{
+       
+        int * temp=new int[end-start+1];
+        if(temp==NULL)
+           return;
+        mergeSort(src,start,end,temp);
+        delete []temp;
 }
