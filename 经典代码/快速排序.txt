@@ -1,0 +1,44 @@
+void quickSort(int *src,int start,int end)
+{
+         if(end<start)
+         {
+              int t=src[random(start,end)];
+              temp=src[t];
+              src[t]=src[start];
+              src[start]=temp;
+              int low=start+1,high=end;
+              bool iSwap=false;
+              while(low<high)
+              {
+                    if(src[low]<=src[start])
+                     {
+                            low++;
+                            if(src[high]>=src[start])
+                                 high--;
+                           // iSwap=false;    
+                      }
+                      else
+                      {
+                            if(src[high]>=src[start])
+                                high--;
+                               // iSwap=false;
+                            else
+                                iSwap=true;
+                       }
+                       if(iSwap)
+                          swap(src[low],src[high]);
+                          iSwap=false;
+                    
+               }
+               int mid;
+               if(src[low]<=src[start])
+                    swap(src[low],src[start]);
+                    mid=low;
+               else
+                    swap(src[low-1],src[start]);
+                    mid=low-1;
+               quickSort(src,start+1,mid-1);
+               quickSort(src,mid+1,end);
+                   
+          }
+}
