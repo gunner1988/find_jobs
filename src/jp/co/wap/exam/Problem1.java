@@ -2,7 +2,7 @@ package jp.co.wap.exam;
 import java.util.Arrays;
 import java.util.List;
 import jp.co.wap.exam.lib.Interval;
-
+//import org.
 public class Problem1 {
 	
 	/*public int getMaxIntervalOverlapCount(List<Interval> intervals){
@@ -65,14 +65,15 @@ public class Problem1 {
 	public static void main(String args[]){
 		Problem1 p=new Problem1();
 		Interval interval1=new Interval("24:00","24:00");
+		System.out.println(interval1.getBegin());
 		Interval interval2=new Interval("12:01","13:00");
 		Interval interval3=new Interval("13:00","15:00");
 		List<Interval> figure1=Arrays.asList(interval1,interval2,interval3);
-		assertThat(p.getMaxIntervalOverlapCount(figure1),is(2));
+	//	assertThat(p.getMaxIntervalOverlapCount(figure1),is(2));
 		System.out.println(p.getMaxIntervalOverlapCount(figure1));
 		List<Interval> figure2=Arrays.asList(new Interval("08:00","10:30"),new Interval("09:00","12:30"),new Interval("12:30","12:40"),new Interval("12:00","14:30"),
 				new Interval("10:00","12:30"),new Interval("11:00","12:30"));
-		assertThat(p.getMaxIntervalOverlapCount(figure1),is(5));
+		//assertThat(p.getMaxIntervalOverlapCount(figure1),is(5));
 		System.out.println(p.getMaxIntervalOverlapCount(figure2));
 	}
 

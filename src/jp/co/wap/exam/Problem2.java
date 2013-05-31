@@ -70,7 +70,7 @@ public class Problem2 {
 		List<Interval> figure2=Arrays.asList(new Interval("08:00","10:30"),new Interval("09:00","12:30"),new Interval("12:30","12:40"),new Interval("12:00","14:30"),
 				new Interval("10:00","12:30"),new Interval("11:00","12:30"));
 		List<Interval> figure3=Arrays.asList(new Interval("06:00","08:30"),new Interval("09:00","11:30"),new Interval("12:30","14:00"));
-		System.out.println(p.getMaxWorkingTime(figure1));
+		//System.out.println(p.getMaxWorkingTime(figure1));
 		System.out.println(p.getMaxWorkingTime(figure2));
 		System.out.println(p.getMaxWorkingTime(figure3));
 	}
