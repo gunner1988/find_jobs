@@ -5,52 +5,101 @@ import java.util.List;
 import java.util.NoSuchElementException;
 public class PersistentQueue<E> {
 	
-	int head;
-	int tail;
-	int size;
-	E[] queue;
-	static int initialSize=500;
+	private int head;
+	private int tail;
+	private int size;
+	private int maxSize;
+	private E[] queue;
+	static int initialMaxSize=500;
 	public PersistentQueue(){
 		head=0;
 		tail=0;
-		size=initialSize;
+		maxSize=initialMaxSize;
+		queue=(E[])new Object[maxSize];
+		size=0;
+	}
+	public PersistentQueue(E[] otherArray){
+		E[] theQueue=(E[])new Object[2*otherArray.length];
+		for(int i=0;i<otherArray.length;i++){
+			theQueue[i]=otherArray[i];
+		}
+		this.head=0;
+		this.tail=otherArray.length;
+		this.maxSize=2*(otherArray.length);
+		this.size=otherArray.length;
+		this.queue=theQueue;
 	}
 	public PersistentQueue(PersistentQueue<E> other){
 		this.head=other.head;
 		this.tail=other.tail;
-		size=other.size;
+		this.size=other.size;
 		this.queue=other.queue;
+		this.maxSize=other.maxSize;
+	}
+	public boolean isFull(){
+		return (tail+1==maxSize);
+	}
+	public boolean isEmpty(){
+		return (head==tail);
 	}
 	public PersistentQueue<E> enqueue(E e){
 		
 		PersistentQueue<E> sr=new PersistentQueue<E>(this);
 		
 		
-		if((sr.tail+1)%sr.size==sr.head){
+		if(sr.isFull()){
+			E[] theQueue=(E[])new Object[2*(sr.maxSize)];//expand capacity of the queue;
+			for(int i=0;i<sr.size;i++)
+			{
+				theQueue[i]=sr.queue[sr.head+i];
+				
+			}
+			sr.queue=theQueue;
+			sr.head=0;
+			sr.maxSize=2*(sr.maxSize);
+			sr.queue[sr.size]=e;
+			sr.size+=1;
+			sr.tail=sr.size;
 			
 		}
 		else
 		{
-		    queue.	
+		    sr.queue[sr.tail]=e;
+		    sr.tail=sr.tail+1;
+		    sr.size+=1;
+		    
 		}
 		return sr;
 		
 	}
 	public PersistentQueue<E> dequeue(){
-		if(size==0){
-			return this;
+		if(isEmpty()){
+			throw new NoSuchElementException();
 		}
-		
-		return null;
+		PersistentQueue sr=new PersistentQueue(this);
+		sr.head+=1;
+		sr.size-=1;
+		return sr;
 	}
     public E peek(){
-    	return null;
+    	if(isEmpty()){
+    		throw new NoSuchElementException();
+    	}
+    	return this.queue[head];
     }
     public int size(){
     	
-    	return 0;
+    	return size;
     }
  
-	
+	public static void main(String args[]){
+		String[] wa={"fsf","fff","ddd"};
+		PersistentQueue<String> a=new PersistentQueue<String>(wa);
+		PersistentQueue<String> b=new PersistentQueue<String>();
+		PersistentQueue<String> c=b.enqueue("dsfsd");
+		PersistentQueue<String> d=c.dequeue();
+		c.enqueue("dddd");
+		System.out.print(a.peek());
+	}
 
 }
